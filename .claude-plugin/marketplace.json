@@ -1,0 +1,21 @@
+{
+  "name": "flywheel",
+  "owner": {
+    "name": "wonderchook"
+  },
+  "metadata": {
+    "description": "AI-powered workflows for positioning, copy, and growth",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "flywheel",
+      "description": "AI-powered workflows for positioning, copy, and growth that compound over time. Encodes April Dunford's positioning framework and Matt Lerner's growth framework into structured skills.",
+      "author": {
+        "name": "wonderchook"
+      },
+      "tags": ["positioning", "growth", "copy", "marketing"],
+      "source": "./"
+    }
+  ]
+}
