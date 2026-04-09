@@ -57,12 +57,12 @@ Detects conflicts with prior decisions and forces explicit resolution.
 
 Add the marketplace:
 ```
-/plugin marketplace add wonderchook/flywheel
+/plugin marketplace add Untangling-Systems/flywheel
 ```
 
 Install the plugin:
 ```
-/plugin install flywheel@wonderchook-flywheel
+/plugin install flywheel@Untangling-Systems-flywheel
 ```
 
 Reload to activate:
