@@ -1,6 +1,6 @@
 ---
 name: fw:compound
-description: Save session learnings to knowledge stores so future sessions get smarter. Captures positioning insights, copy test outcomes, and cross-session patterns. Use after any /fw:position, /fw:copy, or /fw:grow session, or when returning with real-world results.
+description: Save session learnings to knowledge stores so future sessions get smarter. Captures positioning insights, copy test outcomes, pitch storyboard results, and cross-session patterns. Use after any /fw:position, /fw:copy, /fw:pitch, or /fw:grow session, or when returning with real-world results.
 argument-hint: "[optional: what you learned, or 'outcome' to record real-world results]"
 ---
 
@@ -28,7 +28,9 @@ Check what happened recently by searching the knowledge stores:
 
 2. **Search `docs/copy-tests/`** — check for files created today or referenced in conversation. If found, this is likely a post-copy session.
 
-3. **Search `docs/growth-experiments/`** — check for files created today or referenced in conversation. If found, this is likely a post-growth session.
+3. **Search `docs/pitch-storyboards/`** — check for files created today or referenced in conversation. If found, this is likely a post-pitch session.
+
+4. **Search `docs/growth-experiments/`** — check for files created today or referenced in conversation. If found, this is likely a post-growth session.
 
 4. **Check arguments** — if the user said "outcome" or described real-world results, this is an outcome recording session.
 
@@ -37,8 +39,9 @@ If context is ambiguous, ask:
 > "What are you compounding? Pick the session type:
 > 1. **Positioning insights** — why you made specific choices in the canvas
 > 2. **Copy learnings** — what you learned about messaging during a copy session
-> 3. **Outcome recording** — real-world results from copy or experiments you've shipped
-> 4. **Cross-session pattern** — something you've noticed across multiple sessions"
+> 3. **Pitch storyboard learnings** — what you learned about the narrative during a pitch session
+> 4. **Outcome recording** — real-world results from copy, pitches, or experiments you've shipped
+> 5. **Cross-session pattern** — something you've noticed across multiple sessions"
 
 ### Search for Prior Learnings
 
@@ -185,9 +188,18 @@ evidence-from:
 
 #### Outcome Recording
 
-Update the specific artifact in `docs/copy-tests/` or `docs/growth-experiments/`.
+Update the specific artifact in `docs/copy-tests/`, `docs/pitch-storyboards/`, or `docs/growth-experiments/`.
 
 **For copy tests:** Update the `## Outcome Notes` section with the recorded results.
+
+**For pitch storyboards:** Add or update an `## Outcome Notes` section at the bottom of the storyboard file. Record:
+- When the pitch was delivered and to whom
+- Which beats landed (or didn't) — specifically call out the Insight, the Old Game reaction, and the Ask
+- The buyer's response to the Ask
+- Any questions the buyer pushed back on (these often reveal weak proof points)
+- What to change for the next version of this storyboard
+
+Also update the frontmatter: set `last-updated` to today's date.
 
 **For growth experiments:** Update both:
 1. The `## Result` and `## Learnings` body sections with the recorded results

@@ -9,18 +9,21 @@ flywheel/
 ├── skills/                          # Workflow skills
 │   ├── fw-position/SKILL.md         # Dunford's positioning sequence
 │   ├── fw-copy/SKILL.md             # Positioning → copy artifacts with drift detection
+│   ├── fw-pitch/SKILL.md            # Dunford's Sales Pitch storyboard
 │   ├── fw-grow/SKILL.md             # Lerner's growth experiments
 │   └── fw-compound/SKILL.md         # Save learnings to stores
 ├── agents/                          # Research agents
 │   └── research/
 │       ├── positioning-researcher.md  # Searches docs/positioning/ for prior decisions
 │       ├── copy-researcher.md         # Searches docs/copy-tests/ for past performance
+│       ├── pitch-researcher.md        # Searches docs/pitch-storyboards/ for prior storyboards
 │       └── growth-researcher.md       # Searches docs/growth-experiments/ for past experiments
 └── docs/                            # Knowledge stores (created in user's project)
     ├── positioning/
     │   ├── current.md               # Active positioning canvas
     │   └── archive/                 # Previous versions
     ├── copy-tests/                  # Copy artifacts with drift reports and outcome notes
+    ├── pitch-storyboards/           # Sales pitch storyboards with drift reports and outcome notes
     └── growth-experiments/          # Experiment cards with results and learnings
 ```
 
@@ -40,11 +43,13 @@ flywheel/
 
 ## Knowledge Stores
 
-Three separate stores with different schemas:
+Four separate stores with different schemas:
 
 * **`docs/positioning/`** — Positioning decisions. `current.md` is the active canvas. `archive/` holds dated previous versions. `pattern-*.md` files capture cross-session patterns created by `/fw:compound`.
 
 * **`docs/copy-tests/`** — Copy attempts with artifact type, target reader, positioning claims, draft, outcome notes.
+
+* **`docs/pitch-storyboards/`** — Sales pitch storyboards with the 7-step narrative (insight, old game, new game, perfect solution, differentiated value, proof, ask), buyer type, meeting format, drift report, and outcome notes.
 
 * **`docs/growth-experiments/`** — Experiment cards with behavior, barrier, hypothesis, test design, success criteria, result.
 
@@ -52,7 +57,7 @@ All files use YAML frontmatter for searchability:
 
 ```yaml
 ---
-type: positioning-decision | positioning-pattern | copy-test | growth-experiment
+type: positioning-decision | positioning-pattern | copy-test | pitch-storyboard | growth-experiment
 tags: [icp, differentiation, landing-page, ...]
 confidence: high | medium | low
 created: YYYY-MM-DD
@@ -84,10 +89,13 @@ Firm but non-blocking. Three levels:
 
 Each skill has a Pipeline Mode section for programmatic invocation. Pipeline Mode is triggered when a skill is invoked by another skill or an automation — the `disable-model-invocation` context indicates the skill should not prompt the user interactively:
 
-- Skip all AskUserQuestion prompts
-- Use provided arguments and sensible defaults
-- Make reasonable assumptions and flag them in the output
-- Write output files without waiting for confirmation
+* Skip all AskUserQuestion prompts
+
+* Use provided arguments and sensible defaults
+
+* Make reasonable assumptions and flag them in the output
+
+* Write output files without waiting for confirmation
 
 ## Versioning
 

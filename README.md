@@ -30,6 +30,22 @@ For short-form artifacts (one-liners, subject lines), generates **5 variations**
 
 Saves to `docs/copy-tests/` with outcome notes for recording real-world results.
 
+### `/fw:pitch` — Sales Pitch Storyboard
+
+Encodes April Dunford's sales pitch framework from her book *Sales Pitch*. Builds a 7-step storyboard for a live sales conversation or pitch deck:
+
+1. **The Insight** — your POV on the market that reframes buyer thinking
+2. **The Old Game** — how buyers currently approach the problem (fair, not strawmanned)
+3. **The New Game** — the new buying criteria the insight implies
+4. **The Perfect Solution** — what an ideal product in the new game would look like (abstract)
+5. **Your Differentiated Value** — your product as the closest thing to the ideal
+6. **Proof** — specific evidence for every value claim
+7. **The Ask** — the proportional next step
+
+Reads the positioning canvas automatically and runs drift detection on value and proof claims — nothing in the storyboard should be ungrounded. Supports **revision mode** for updating specific sections after a pitch falls flat, and **deck mode** for slide-by-slide notes.
+
+Saves to `docs/pitch-storyboards/` with outcome notes so future sessions know which insights and asks have actually landed.
+
 ### `/fw:grow` — Growth Experiments
 
 Designs experiments using Lerner's behavior-first framework:
@@ -99,6 +115,7 @@ Three stores with different schemas, all in `docs/` in your project:
 |-------|----------|------------|
 | `docs/positioning/` | Positioning canvas + archived versions + cross-session patterns | `/fw:position`, `/fw:compound` |
 | `docs/copy-tests/` | Copy artifacts with drift reports and outcome notes | `/fw:copy`, `/fw:compound` |
+| `docs/pitch-storyboards/` | Sales pitch storyboards with drift reports and outcome notes | `/fw:pitch`, `/fw:compound` |
 | `docs/growth-experiments/` | Experiment cards with results and learnings | `/fw:grow`, `/fw:compound` |
 
 All files use YAML frontmatter for searchability. All outputs are plain markdown.
@@ -119,6 +136,7 @@ Three research agents search the knowledge stores at the start of each session:
 
 - **positioning-researcher** — surfaces prior decisions, archived canvases, and evolution history
 - **copy-researcher** — finds drift patterns, outcome data, and untested claims
+- **pitch-researcher** — surfaces prior storyboards, insights already tried, and asks that landed
 - **growth-researcher** — tracks barrier patterns, running experiments, and result history
 
 ## Design Principles
