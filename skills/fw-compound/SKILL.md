@@ -1,6 +1,6 @@
 ---
 name: fw:compound
-description: Save session learnings to knowledge stores so future sessions get smarter. Captures positioning insights, copy test outcomes, pitch storyboard results, and cross-session patterns. Use after any /fw:position, /fw:copy, /fw:pitch, or /fw:grow session, or when returning with real-world results.
+description: Save session learnings to knowledge stores so future sessions get smarter. Captures positioning insights, copy test outcomes, pitch storyboard results, pricing outcomes, and cross-session patterns. Use after any /fw:position, /fw:copy, /fw:pitch, /fw:monetize, or /fw:grow session, or when returning with real-world results.
 argument-hint: "[optional: what you learned, or 'outcome' to record real-world results]"
 ---
 
@@ -30,7 +30,9 @@ Check what happened recently by searching the knowledge stores:
 
 3. **Search `docs/pitch-storyboards/`** — check for files created today or referenced in conversation. If found, this is likely a post-pitch session.
 
-4. **Search `docs/growth-experiments/`** — check for files created today or referenced in conversation. If found, this is likely a post-growth session.
+4. **Search `docs/pricing/`** — check `current.md` and any `wtp-*.md` files created or updated today. If found, this is likely a post-monetize session (or an outcome recording for real pricing data — conversion rates, churn by tier, upsell rates).
+
+5. **Search `docs/growth-experiments/`** — check for files created today or referenced in conversation. If found, this is likely a post-growth session.
 
 4. **Check arguments** — if the user said "outcome" or described real-world results, this is an outcome recording session.
 
@@ -40,8 +42,9 @@ If context is ambiguous, ask:
 > 1. **Positioning insights** — why you made specific choices in the canvas
 > 2. **Copy learnings** — what you learned about messaging during a copy session
 > 3. **Pitch storyboard learnings** — what you learned about the narrative during a pitch session
-> 4. **Outcome recording** — real-world results from copy, pitches, or experiments you've shipped
-> 5. **Cross-session pattern** — something you've noticed across multiple sessions"
+> 4. **Pricing learnings** — what you learned about WTP, tiers, model choice, or the pricing corridor
+> 5. **Outcome recording** — real-world results from copy, pitches, pricing, or experiments you've shipped
+> 6. **Cross-session pattern** — something you've noticed across multiple sessions"
 
 ### Search for Prior Learnings
 
@@ -200,6 +203,16 @@ Update the specific artifact in `docs/copy-tests/`, `docs/pitch-storyboards/`, o
 - What to change for the next version of this storyboard
 
 Also update the frontmatter: set `last-updated` to today's date.
+
+**For pricing decisions:** Update `docs/pricing/current.md` directly. Pricing outcomes come in several forms:
+1. **Conversion data** — how many prospects accepted the list price, how many negotiated down, how many walked. Add to a `## Outcome Notes` section with specific numbers.
+2. **Churn by tier** — which tiers retained well, which lost customers fastest. Signals tier mismatch with segments.
+3. **Upsell rates** — how often customers moved from lower to higher tiers. Signals whether the upsell reason in Step 4 actually works.
+4. **WTP validation** — when a real price conversation confirms or contradicts a prior signal, update the signal table in Step 2 and flag the contradiction in Step 1 of the outcome notes.
+
+Also update the frontmatter: set `last-updated` to today's date and consider bumping `confidence` up or down based on the outcome.
+
+**For WTP interview notes:** Update the specific `docs/pricing/wtp-{slug}-{date}.md` file. Fill in the "Interview Notes" section with the captured numbers, direct quotes, and surprise signals. Set frontmatter `status: completed`. Then run `/fw:monetize revise [section]` on the sections the interview materially changed.
 
 **For growth experiments:** Update both:
 1. The `## Result` and `## Learnings` body sections with the recorded results

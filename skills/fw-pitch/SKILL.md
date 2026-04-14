@@ -74,6 +74,8 @@ Search the other knowledge stores for real-world outcomes that could become proo
 
 * **`docs/pitch-storyboards/`** — Any prior storyboards with `## Outcome Notes` filled in after delivery (what the buyer said, which points landed).
 
+* **`docs/pricing/current.md`** — The active pricing decision and its reasoning. Concrete price points, WTP signals, and competitive reference prices are all credible proof for value claims (e.g., "customers pay $X/month because this feature saves them Y").
+
 Surface what you find:
 
 > "I found [N] real-world outcomes that could work as proof points:

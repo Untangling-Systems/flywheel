@@ -46,6 +46,21 @@ Reads the positioning canvas automatically and runs drift detection on value and
 
 Saves to `docs/pitch-storyboards/` with outcome notes so future sessions know which insights and asks have actually landed.
 
+### `/fw:monetize` — Pricing & Monetization Strategy
+
+Encodes Madhavan Ramanujam's framework from his book *Monetizing Innovation*. Produces a defensible pricing decision in 6 steps:
+
+1. **Leaky Bucket Analysis** — classify every unique attribute as differentiator, filler, loser, or leader (diagnoses feature shock and hidden gems)
+2. **WTP Signals** — surface every willingness-to-pay signal with its source; flag gaps as next-action interview questions
+3. **Segmentation by WTP** — regroup customers by what they'd pay, not demographics, with a price corridor per segment
+4. **Product Configuration** — good/better/best tiers where each tier serves a WTP segment and anchors on a differentiator
+5. **Monetization Model** — subscription, usage, outcome, freemium, per-seat — chosen to match the buyer's mental model
+6. **Price Points & Corridor** — list, floor, and ceiling per tier, every number cited to a signal or competitive reference
+
+Supports a **WTP interview guide mode** (`/fw:monetize wtp`) that produces a structured document the founder takes to real customer conversations — Van Westendorp questions, feature value probes, and competitive price probes, all grounded in the positioning canvas.
+
+Strict drift detection on price points: any number without a cited signal or reference is flagged as the Ramanujam failure mode (guessing at price). Saves to `docs/pricing/current.md` as a singleton decision that evolves, with archived versions and WTP interview findings alongside.
+
 ### `/fw:grow` — Growth Experiments
 
 Designs experiments using Lerner's behavior-first framework:
@@ -109,13 +124,14 @@ Each session reads from the knowledge stores before starting. Prior decisions su
 
 ### Knowledge Stores
 
-Three stores with different schemas, all in `docs/` in your project:
+Five stores with different schemas, all in `docs/` in your project:
 
 | Store | Contents | Created by |
 |-------|----------|------------|
 | `docs/positioning/` | Positioning canvas + archived versions + cross-session patterns | `/fw:position`, `/fw:compound` |
 | `docs/copy-tests/` | Copy artifacts with drift reports and outcome notes | `/fw:copy`, `/fw:compound` |
 | `docs/pitch-storyboards/` | Sales pitch storyboards with drift reports and outcome notes | `/fw:pitch`, `/fw:compound` |
+| `docs/pricing/` | Pricing decision + archived versions + WTP interview findings + patterns | `/fw:monetize`, `/fw:compound` |
 | `docs/growth-experiments/` | Experiment cards with results and learnings | `/fw:grow`, `/fw:compound` |
 
 All files use YAML frontmatter for searchability. All outputs are plain markdown.
@@ -132,11 +148,12 @@ Examples: "That's a metric, not a behavior." "That's a segment, not a person." "
 
 ### Research Agents
 
-Three research agents search the knowledge stores at the start of each session:
+Five research agents search the knowledge stores at the start of each session:
 
 - **positioning-researcher** — surfaces prior decisions, archived canvases, and evolution history
 - **copy-researcher** — finds drift patterns, outcome data, and untested claims
 - **pitch-researcher** — surfaces prior storyboards, insights already tried, and asks that landed
+- **pricing-researcher** — aggregates WTP signals across stores, flags stale pricing vs. canvas, tracks interview findings
 - **growth-researcher** — tracks barrier patterns, running experiments, and result history
 
 ## Design Principles

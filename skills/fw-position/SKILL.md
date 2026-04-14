@@ -245,10 +245,12 @@ Use AskUserQuestion:
 **Options:**
 
 1. **Run `/fw:copy`** — Translate this positioning into a specific artifact (landing page, pitch, bio, outreach, talk abstract)
-2. **Run `/fw:grow`** — Design a growth experiment based on this positioning
-3. **Run `/fw:compound`** — Save the positioning decisions and reasoning for future reference
-4. **Revise** — Go back and sharpen a specific section
-5. **Done for now** — Come back later
+2. **Run `/fw:pitch`** — Build a full sales pitch storyboard grounded in this positioning
+3. **Run `/fw:monetize`** — Design pricing and monetization strategy based on the segments and value chains
+4. **Run `/fw:grow`** — Design a growth experiment based on this positioning
+5. **Run `/fw:compound`** — Save the positioning decisions and reasoning for future reference
+6. **Revise** — Go back and sharpen a specific section
+7. **Done for now** — Come back later
 
 ## Important Rules
 
