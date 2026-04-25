@@ -12,7 +12,7 @@ Work through Madhavan Ramanujam's core monetization framework (from his book *Mo
 
 Ramanujam's central argument: most product failures are really pricing failures. Feature shock (too much in one product), minivation (innovation nobody will pay for), hidden gems (value you never charged for), and undead products (nobody wanted at any price) all come from skipping the willingness-to-pay conversation. This skill forces that conversation early.
 
-## Canvas Path Resolution (Komorebi multi-canvas patch, 2026-04-21)
+## Canvas Path Resolution
 
 This skill reads a positioning canvas to ground every pricing decision. Path resolution order:
 
@@ -21,6 +21,14 @@ This skill reads a positioning canvas to ground every pricing decision. Path res
 3. **Fallback**: `docs/positioning/current.md`.
 
 **All references below to `docs/positioning/current.md` should substitute the resolved canvas path.** This matters especially for multi-canvas portfolios where each track or product has its own segments, value chains, and competitive alternatives — pricing for the wrong canvas will produce a defensible-looking but wrong decision.
+
+**Pricing path derivation:** Once the canvas path is resolved, derive the pricing output path by taking the canvas filename and placing it in `docs/pricing/`. Examples:
+
+- `docs/positioning/current.md` → `docs/pricing/current.md` (existing behavior, no change)
+- `docs/positioning/track-a.md` → `docs/pricing/track-a.md`
+- `docs/positioning/enterprise.md` → `docs/pricing/enterprise.md`
+
+All references below to `docs/pricing/current.md` should substitute this derived pricing path. WTP interview guides (`docs/pricing/wtp-{slug}-{date}.md`) and the archive (`docs/pricing/archive/`) are not canvas-scoped — they remain at fixed paths.
 
 ## When to Use
 
@@ -334,8 +342,8 @@ This is your grounded-claim inventory.
 
 After user approval:
 
-- Archive the current pricing decision if one existed: copy `docs/pricing/current.md` to `docs/pricing/archive/{YYYY-MM-DD}.md`
-- Write the new decision to `docs/pricing/current.md`
+- Archive the current pricing decision if one existed: copy `{resolved pricing path}` to `docs/pricing/archive/{YYYY-MM-DD}-{canvas-stem}.md` (where `canvas-stem` is the canvas filename without extension, e.g. `track-a`)
+- Write the new decision to `{resolved pricing path}`
 - Set frontmatter fields:
   ```yaml
   ---
@@ -361,7 +369,7 @@ For WTP interview guide mode, save to `docs/pricing/wtp-{slug}-{date}.md` with `
 
 Use AskUserQuestion:
 
-**Question:** "Pricing decision saved to `docs/pricing/current.md`. What next?"
+**Question:** "Pricing decision saved to `{resolved pricing path}`. What next?"
 
 **Options:**
 1. **Run `/fw:monetize wtp`** — Design an interview guide to fill WTP signal gaps before committing
@@ -392,6 +400,8 @@ Use AskUserQuestion:
 When invoked with `disable-model-invocation` context:
 
 - Skip all AskUserQuestion prompts
+- Honor `--canvas <path>` if provided; otherwise apply Canvas Path Resolution silently (single canvas: use it; multiple: use `docs/positioning/current.md` and flag the assumption; none: use `docs/positioning/current.md`)
+- Derive the pricing path from the resolved canvas path per the Pricing path derivation rule above
 - Use provided arguments and the canvas as context
 - Work through all 6 steps, making reasonable assumptions where signals are missing
 - Flag every assumption in the output (especially in Step 2 and Step 6)
