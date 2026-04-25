@@ -1,7 +1,7 @@
 ---
 name: fw:position
-description: Work through April Dunford's positioning framework in sequence. Produces a positioning canvas that downstream skills (/fw:copy, /fw:grow) read automatically. Use when positioning a product, company, or offer for the first time, or when revisiting positioning after a significant change.
-argument-hint: "[product name, or 'revise [section]' to update specific sections, or reason for revision]"
+description: Work through April Dunford's positioning framework in sequence. Produces a positioning canvas that downstream skills (/fw:copy, /fw:grow) read automatically. Use when positioning a product, company, or offer for the first time, or when revisiting positioning after a significant change. Supports multi-canvas portfolios via the --canvas flag and an optional values-fit check via the --values-check flag.
+argument-hint: "[product name, or 'revise [section]' to update specific sections, or reason for revision] [--canvas path/to/canvas.md] [--values-check]"
 ---
 
 <positioning_context> #$ARGUMENTS </positioning_context>
@@ -9,6 +9,37 @@ argument-hint: "[product name, or 'revise [section]' to update specific sections
 # Position
 
 Work through April Dunford's 5-component positioning framework. No shortcuts. The output is a positioning canvas that becomes the foundation for copy, growth experiments, and quarterly planning.
+
+## Canvas Path Resolution (Komorebi multi-canvas patch, 2026-04-21)
+
+This skill writes the positioning canvas. Path resolution order:
+
+1. **Explicit `--canvas <path>` in the user's arguments.** Use that path. If the file doesn't exist, this becomes a fresh canvas at that path.
+2. **If no `--canvas`**, scan `docs/positioning/` for `.md` files (excluding `portfolio.md` and `archive/`). If exactly one exists, use it. If multiple exist, list them and ASK which canvas the user is working in (or whether to create a new one).
+3. **Fallback**: `docs/positioning/current.md`.
+
+**All references below to `docs/positioning/current.md` should substitute the resolved canvas path.** The `docs/positioning/archive/` path stays fixed — it's shared history across canvases.
+
+Multi-canvas portfolios (e.g., a consultancy with three distinct service tracks, each with its own segments and frame) should keep one canvas per coherent positioning, not one giant canvas trying to serve all of them.
+
+## Values-Fit Check (optional, `--values-check` flag)
+
+Standard Dunford produces a defensible canvas. It does not check whether the canvas describes work the founder actually wants to do. For VC-backed teams shipping a clear product, this is fine — the value engine and the founder's life are usually decoupled. For solo founders, consultants, and lifestyle businesses, the positioning IS the founder's daily work, and a defensible canvas pointed at the wrong segment or wrong frame produces a successful business the founder hates running.
+
+The `--values-check` flag adds short values prompts to Steps 1, 2, 4, and 5, plus a closing **Values-Fit Sanity Check** before the canvas is assembled. It is **off by default** — opt in.
+
+When to use it:
+
+* You are the person who will deliver the work the canvas describes
+* Past positioning sessions produced canvases that were technically right but felt wrong to execute
+* The segment, frame, or competitive set is partly chosen for life-fit reasons (geography, energy, who you want to spend hours with)
+
+When to skip it:
+
+* You are positioning a product whose execution is decoupled from your daily life (a SaaS team, a venture-backed startup, an offer someone else delivers)
+* You explicitly want only the market-defensibility lens — values are managed elsewhere
+
+If `--values-check` is not in the arguments, run the standard sequence and skip every section labeled "Values check" below.
 
 ## When to Use
 
@@ -136,6 +167,11 @@ Work through all 5 steps in order. Each step builds on the previous one. Use `re
 
 **When this step is done:** You have a table of 3+ named alternatives with reasons customers choose each one.
 
+**Values check (`--values-check` only):**
+> "Look at the competitive set. Is this the company you want to keep? Competing in a market means showing up at the same conferences, talking to the same buyers, getting compared to the same vendors. If the alternatives are ones you'd be embarrassed to be benchmarked against — or ones whose buyers you actively don't want to spend hours with — flag it. The market you choose is the room you live in."
+
+Capture the response in a `values_notes` field for this step. Don't redirect — just note it; the Values-Fit Sanity Check at the end will surface accumulated tension.
+
 Use AskUserQuestion to present what you've captured and confirm:
 > "Here are the competitive alternatives I captured: [table]. Anything missing? Any you'd remove?"
 
@@ -156,6 +192,11 @@ Use AskUserQuestion to present what you've captured and confirm:
 - Single attribute → Probe for at least one more: "Is there anything else? Even something small?"
 
 **When this step is done:** You have a table of unique attributes, each mapped to which alternatives lack them.
+
+**Values check (`--values-check` only):**
+> "These attributes will become the work you're known for. They'll show up in every pitch, every landing page, every conference bio. For each one, ask: 'Do I want to be doing more of this in three years?' A differentiator you don't want to deepen is a treadmill — defensible, but exhausting. Flag any attribute that you're great at but don't want to grow into."
+
+Capture the response in `values_notes` for this step.
 
 ---
 
@@ -191,6 +232,11 @@ Use AskUserQuestion to present what you've captured and confirm:
 
 **When this step is done:** You have a segment table with specific descriptions, reasons, and where to find them.
 
+**Values check (`--values-check` only):**
+> "These customers are who you'll spend hours with. Discovery calls, project kickoffs, support conversations, edge cases. For each segment, ask: 'Do I actually like these people? Do I respect what they're trying to do?' A segment you can serve but don't enjoy will produce successful work and a tired founder. If a segment lights you up, name it. If a segment makes you flinch, flag it — even if the WTP looks good."
+
+Capture the response in `values_notes` for this step.
+
 ---
 
 ### Step 5: Market Frame of Reference
@@ -208,7 +254,33 @@ Use AskUserQuestion to present what you've captured and confirm:
 
 **When this step is done:** You have a frame of reference with reasoning and rejected alternatives.
 
+**Values check (`--values-check` only):**
+> "The frame is how the world will categorize you. It shapes what conferences you're invited to, what podcasts ask you on, what your peers assume you do. Ask: 'Is this the identity I want to carry?' A frame can be defensible *and* feel like a costume. If the frame is right for the market but wrong for who you want to be in five years, flag it — sometimes the right move is a frame that's slightly less obvious commercially but truer to the work you want to be known for."
+
+Capture the response in `values_notes` for this step.
+
 ---
+
+## Values-Fit Sanity Check (`--values-check` only)
+
+Before assembling the canvas, surface the accumulated `values_notes` from Steps 1, 2, 4, and 5 and ask the question Dunford's framework doesn't:
+
+> "Here's what came up across the values checks:
+> - **Step 1 (alternatives):** [notes or 'no flags']
+> - **Step 2 (attributes):** [notes or 'no flags']
+> - **Step 4 (segments):** [notes or 'no flags']
+> - **Step 5 (frame):** [notes or 'no flags']
+>
+> The canvas as it stands is defensible. The question now is whether it's defensible *and* something you want to live inside. If you executed this positioning hard for two years, would you be proud of the business you'd built? Or would it be technically successful and quietly draining?
+>
+> Three options:
+> 1. **Ship it as-is** — the values flags are real but you can manage them; the commercial logic outweighs them.
+> 2. **Sharpen one section** — name which step needs revision and what change would resolve the values tension. We'll loop back into that step.
+> 3. **Park the canvas** — the gap between defensible and life-fit is too wide. Note what the canvas got right, archive it, and start fresh with different inputs (different segment, different frame, different alternatives)."
+
+Capture the resolution in a `## Values-Fit Notes` section in the assembled canvas. Even when option 1 is chosen, the notes are valuable — they document what the founder knowingly accepted, which protects against later "why did I build this?" drift.
+
+If the user picks option 2, loop back to that step with the values context loaded. If they pick option 3, save the values notes and the partial canvas to `docs/positioning/archive/parked-{YYYY-MM-DD}.md` so the work isn't lost, then offer to start a fresh `/fw:position` run.
 
 ## Assembling the Canvas
 
@@ -272,6 +344,9 @@ When invoked with `disable-model-invocation` context:
 
 - Skip all AskUserQuestion prompts
 - Use any provided arguments as context
+- Honor `--canvas <path>` if provided; otherwise apply the Canvas Path Resolution rules silently (single-file: use it; multiple: pick the most-recently-modified non-portfolio canvas and flag the assumption in the output; none: write to `docs/positioning/current.md`)
+- Honor `--values-check` if provided; otherwise skip all values-check prompts and the Values-Fit Sanity Check section
 - Work through all 5 steps using available information
 - Make reasonable assumptions, flag them in the canvas
+- If `--values-check` is on, capture `values_notes` per step but do not loop back into revisions — write the Values-Fit Sanity Check as flagged tension in the output for the user to act on later
 - Write output files without waiting for confirmation

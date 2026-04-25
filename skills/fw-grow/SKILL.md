@@ -1,7 +1,7 @@
 ---
 name: fw:grow
-description: Design growth experiments using Matt Lerner's behavior-first framework. Starts with a specific user behavior, diagnoses the barrier, and produces a testable experiment card. Use after positioning is established to turn positioning into traction.
-argument-hint: "[behavior you want to increase, or context about your growth challenge]"
+description: Design growth experiments using Matt Lerner's behavior-first framework. Starts with a specific user behavior, diagnoses the barrier, and produces a testable experiment card. Use after positioning is established to turn positioning into traction. Supports multi-canvas portfolios via the --canvas flag.
+argument-hint: "[behavior you want to increase, or context about your growth challenge] [--canvas path/to/canvas.md]"
 ---
 
 <grow_context> #$ARGUMENTS </grow_context>
@@ -9,6 +9,16 @@ argument-hint: "[behavior you want to increase, or context about your growth cha
 # Grow
 
 Design a growth experiment that's specific enough for someone else to run. Matt Lerner's framework: most growth problems are behavior problems. Find the behavior, diagnose the barrier, test the smallest intervention.
+
+## Canvas Path Resolution (Komorebi multi-canvas patch, 2026-04-21)
+
+This skill reads a positioning canvas to design experiments. The path is resolved in this order:
+
+1. **Explicit `--canvas <path>` in the user's arguments.** Use that path.
+2. **If no `--canvas`**, scan `docs/positioning/` for `.md` files (excluding `portfolio.md` and `archive/`). If exactly one exists, use it. If multiple exist, list them and ASK which to design experiments for.
+3. **Fallback**: `docs/positioning/current.md`.
+
+**For all references below to `docs/positioning/current.md`, substitute the resolved canvas path.**
 
 ## When to Use
 

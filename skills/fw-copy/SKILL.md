@@ -1,7 +1,7 @@
 ---
 name: fw:copy
-description: Translate positioning into specific copy artifacts with drift detection. Reads the positioning canvas and produces grounded drafts where every claim traces back. Use after /fw:position has produced a canvas.
-argument-hint: "[artifact type: landing-page, pitch, bio, outreach, talk-abstract, case-study, one-liner]"
+description: Translate positioning into specific copy artifacts with drift detection. Reads the positioning canvas and produces grounded drafts where every claim traces back. Use after /fw:position has produced a canvas. Supports multi-canvas portfolios via the --canvas flag.
+argument-hint: "[artifact type: landing-page, pitch, bio, outreach, talk-abstract, case-study, one-liner] [--canvas path/to/canvas.md]"
 ---
 
 <copy_context> #$ARGUMENTS </copy_context>
@@ -9,6 +9,16 @@ argument-hint: "[artifact type: landing-page, pitch, bio, outreach, talk-abstrac
 # Copy
 
 Translate your positioning canvas into a specific copy artifact — landing page, pitch, bio, outreach, talk abstract, case study, or one-liner. Every claim in the draft is traced back to the canvas. Anything that doesn't trace back gets flagged.
+
+## Canvas Path Resolution (Komorebi multi-canvas patch, 2026-04-21)
+
+This skill reads a positioning canvas to produce copy. The path is resolved in this order:
+
+1. **Explicit `--canvas <path>` in the user's arguments.** Use that path.
+2. **If no `--canvas`**, scan `docs/positioning/` for `.md` files (excluding `portfolio.md` and `archive/`). If exactly one exists, use it. If multiple exist, list them and ASK which to translate from.
+3. **Fallback**: `docs/positioning/current.md`.
+
+**For all references below to `docs/positioning/current.md`, substitute the resolved canvas path.**
 
 ## When to Use
 

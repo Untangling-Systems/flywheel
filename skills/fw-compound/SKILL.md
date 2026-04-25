@@ -1,7 +1,7 @@
 ---
 name: fw:compound
-description: Save session learnings to knowledge stores so future sessions get smarter. Captures positioning insights, copy test outcomes, pitch storyboard results, pricing outcomes, and cross-session patterns. Use after any /fw:position, /fw:copy, /fw:pitch, /fw:monetize, or /fw:grow session, or when returning with real-world results.
-argument-hint: "[optional: what you learned, or 'outcome' to record real-world results]"
+description: Save session learnings to knowledge stores so future sessions get smarter. Captures positioning insights, copy test outcomes, pitch storyboard results, pricing outcomes, and cross-session patterns. Use after any /fw:position, /fw:copy, /fw:pitch, /fw:monetize, or /fw:grow session, or when returning with real-world results. Supports multi-canvas portfolios via the --canvas flag.
+argument-hint: "[optional: what you learned, or 'outcome' to record real-world results] [--canvas path/to/canvas.md]"
 ---
 
 <compound_context> #$ARGUMENTS </compound_context>
@@ -9,6 +9,16 @@ argument-hint: "[optional: what you learned, or 'outcome' to record real-world r
 # Compound
 
 Capture what you learned so the next session starts smarter. Every positioning decision, copy test result, and cross-session insight gets saved where future `/fw:position` and `/fw:copy` runs can find it.
+
+## Canvas Path Resolution (Komorebi multi-canvas patch, 2026-04-21)
+
+This skill writes learnings back to the positioning canvas (among other places). Path resolution order:
+
+1. **Explicit `--canvas <path>` in the user's arguments.** Use that path.
+2. **If no `--canvas`**, scan `docs/positioning/` for `.md` files (excluding `portfolio.md` and `archive/`). If exactly one exists, use it. If multiple exist, list them and ASK which canvas to append learnings to.
+3. **Fallback**: `docs/positioning/current.md`.
+
+**All references below to `docs/positioning/current.md` should substitute the resolved canvas path.** Note: this skill also reads `docs/positioning/archive/` — that path stays fixed; it's shared history across canvases.
 
 ## When to Use
 

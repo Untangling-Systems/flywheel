@@ -1,7 +1,7 @@
 ---
 name: fw:monetize
-description: Design pricing and monetization strategy using Madhavan Ramanujam's framework from "Monetizing Innovation". Walks through leaky bucket → WTP signals → segmentation → configuration → model → price points. Reads the positioning canvas and produces an active pricing decision grounded in value chains and segments. Use when pricing a new product, repricing an existing one, or revising pricing after WTP signals from /fw:copy or /fw:pitch sessions.
-argument-hint: "[product name, 'revise [section]', 'wtp' to design an interview guide, or reason for revision]"
+description: Design pricing and monetization strategy using Madhavan Ramanujam's framework from "Monetizing Innovation". Walks through leaky bucket → WTP signals → segmentation → configuration → model → price points. Reads the positioning canvas and produces an active pricing decision grounded in value chains and segments. Use when pricing a new product, repricing an existing one, or revising pricing after WTP signals from /fw:copy or /fw:pitch sessions. Supports multi-canvas portfolios via the --canvas flag.
+argument-hint: "[product name, 'revise [section]', 'wtp' to design an interview guide, or reason for revision] [--canvas path/to/canvas.md]"
 ---
 
 <monetize_context> #$ARGUMENTS </monetize_context>
@@ -11,6 +11,16 @@ argument-hint: "[product name, 'revise [section]', 'wtp' to design an interview 
 Work through Madhavan Ramanujam's core monetization framework (from his book *Monetizing Innovation*). The output is an active pricing decision at `docs/pricing/current.md` — a strategic artifact, not a one-off spreadsheet. It covers the leaky bucket, WTP signals, WTP-based segmentation, product configuration, monetization model, and price points with a corridor.
 
 Ramanujam's central argument: most product failures are really pricing failures. Feature shock (too much in one product), minivation (innovation nobody will pay for), hidden gems (value you never charged for), and undead products (nobody wanted at any price) all come from skipping the willingness-to-pay conversation. This skill forces that conversation early.
+
+## Canvas Path Resolution (Komorebi multi-canvas patch, 2026-04-21)
+
+This skill reads a positioning canvas to ground every pricing decision. Path resolution order:
+
+1. **Explicit `--canvas <path>` in the user's arguments.** Use that path.
+2. **If no `--canvas`**, scan `docs/positioning/` for `.md` files (excluding `portfolio.md` and `archive/`). If exactly one exists, use it. If multiple exist, list them and ASK which canvas this pricing decision is for.
+3. **Fallback**: `docs/positioning/current.md`.
+
+**All references below to `docs/positioning/current.md` should substitute the resolved canvas path.** This matters especially for multi-canvas portfolios where each track or product has its own segments, value chains, and competitive alternatives — pricing for the wrong canvas will produce a defensible-looking but wrong decision.
 
 ## When to Use
 

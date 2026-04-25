@@ -1,7 +1,7 @@
 ---
 name: fw:pitch
-description: Build a sales pitch storyboard using April Dunford's framework from "Sales Pitch". Walks through insight → old game → new game → perfect solution → differentiated value → proof → ask. Use when designing a live sales conversation, founder pitch, or pitch deck narrative grounded in positioning.
-argument-hint: "[buyer type, meeting format, 'revise [section]', or 'deck' for slide notes]"
+description: Build a sales pitch storyboard using April Dunford's framework from "Sales Pitch". Walks through insight → old game → new game → perfect solution → differentiated value → proof → ask. Use when designing a live sales conversation, founder pitch, or pitch deck narrative grounded in positioning. Supports multi-canvas portfolios via the --canvas flag.
+argument-hint: "[buyer type, meeting format, 'revise [section]', or 'deck' for slide notes] [--canvas path/to/canvas.md]"
 ---
 
 <pitch_context> #$ARGUMENTS </pitch_context>
@@ -11,6 +11,16 @@ argument-hint: "[buyer type, meeting format, 'revise [section]', or 'deck' for s
 Work through April Dunford's 7-component sales pitch storyboard (from her book *Sales Pitch*). The output is a storyboard a founder or salesperson can deliver in a live conversation, use as the narrative backbone of a deck, or hand off to someone else to rehearse.
 
 This is the conversation arc, not the 60-second verbal blurb — for the short pitch, see `/fw:copy pitch`.
+
+## Canvas Path Resolution (Komorebi multi-canvas patch, 2026-04-21)
+
+This skill reads a positioning canvas to ground the storyboard's insight, old game, differentiated value, and proof. Path resolution order:
+
+1. **Explicit `--canvas <path>` in the user's arguments.** Use that path.
+2. **If no `--canvas`**, scan `docs/positioning/` for `.md` files (excluding `portfolio.md` and `archive/`). If exactly one exists, use it. If multiple exist, list them and ASK which canvas this storyboard is for.
+3. **Fallback**: `docs/positioning/current.md`.
+
+**All references below to `docs/positioning/current.md` should substitute the resolved canvas path.** A storyboard built from the wrong canvas will pitch the wrong segment with the wrong frame — the buyer will sense the mismatch immediately.
 
 ## When to Use
 
