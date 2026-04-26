@@ -1,6 +1,6 @@
 # Flywheel
 
-A Claude Code plugin that encodes [April Dunford's positioning framework](https://www.aprildunford.com/) and [Matt Lerner's growth framework](https://www.systm.co/) into structured workflows. The friction is the product — each skill forces the specificity that generic AI marketing skips.
+A Claude Code plugin that encodes [April Dunford's positioning and sales pitch frameworks](https://www.aprildunford.com/), [Madhavan Ramanujam's monetization framework](https://www.monetizinginnovation.com/), and [Matt Lerner's growth framework](https://www.systm.co/) into structured workflows. The friction is the product — each skill forces the specificity that generic AI marketing skips.
 
 Outputs are plain markdown, git-tracked, and compound over time. Each session's decisions feed the next.
 
@@ -182,7 +182,7 @@ Five research agents search the knowledge stores at the start of each session:
 
 * **Compound over time.** Session 5 should be faster and sharper than session 1 because the knowledge stores have context.
 
-* **Framework fidelity.** Dunford's positioning sequence and Lerner's growth sequence are followed in order. The frameworks work because they don't let you skip steps.
+* **Framework fidelity.** Dunford's positioning and sales pitch sequences, Ramanujam's monetization sequence, and Lerner's growth sequence are followed in order. The frameworks work because they don't let you skip steps.
 
 * **Built for founders.** Framework reasoning is surfaced inline so you understand *why* each step matters.
 
